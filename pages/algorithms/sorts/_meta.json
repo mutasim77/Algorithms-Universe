@@ -1,0 +1,14 @@
+{
+    "bubble-sort": "Bubble Sort",
+    "selection-sort": "Selection Sort",
+    "insertion-sort": "Insertion Sort",
+    "merge-sort": "Merge Sort",
+    "quick-sort": "Quick Sort",
+    "heap-sort": "Heap Sort",
+    "radix-sort": "Radix Sort",
+    "bucket-sort": "Bucket Sort",
+    "counting-sort": "Counting Sort",
+    "timsort": "Timsort",
+    "cocktail-shaker-sort": "Cocktail Shaker Sort",
+    "gnome-sort": "Gnome Sort"
+}
