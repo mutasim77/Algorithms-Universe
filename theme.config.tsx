@@ -27,9 +27,6 @@ const config: DocsThemeConfig = {
       </div>
     )
   },
-  toc: {
-    backToTop: true
-  },
   banner: {
     key: 'github',
     text: (
