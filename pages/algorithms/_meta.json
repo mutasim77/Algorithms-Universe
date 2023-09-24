@@ -1,0 +1,21 @@
+{
+    "index": "Introduction",
+    "-- Themes": {
+        "type": "separator",
+        "title": "Algorithms"
+    },
+    "sorts": "",
+    "-- More": {
+        "type": "separator",
+        "title": "More"
+    },
+    "about-link": {
+        "title": "About",
+        "href": "/about"
+    },
+    "github": {
+        "title": "GitHub",
+        "href": "www.com",
+        "newWindow": true
+    }
+}

@@ -1,11 +1,31 @@
-# Introduction
- 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+---
+title: Algorithms Universe
+---
 
-## What is Nextra?
+import { Cards } from 'nextra/components'
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+{<h1 className="mt-10 mb-4 text-center text-[2.5rem] font-bold tracking-tight">Algorithms</h1>}
 
-## Documentation
+{<p className="mb-16 text-center text-lg text-gray-500 dark:text-gray-400">
+        Empowering Minds with Algorithms: Explore the Universe.
+</p>
+}
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+<Cards>
+  <ShowcaseCard title="Node.js" href="/">
+    <>![Node.js preview](public/assets/sorts.png)</>
+  </ShowcaseCard>
+</Cards>
+
+export const ShowcaseCard = Object.assign(
+  // Copy card component and add default props
+  Cards.Card.bind(),
+  {
+    displayName: 'ShowcaseCard',
+    defaultProps: {
+      image: true,
+      arrow: true,
+      target: '_blank'
+    }
+  }
+)
