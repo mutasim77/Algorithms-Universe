@@ -4,16 +4,17 @@ title: Algorithms Universe
 
 import { Cards } from 'nextra/components'
 
-{<h1 className="mt-10 mb-4 text-center text-[2.5rem] font-bold tracking-tight">Algorithms</h1>}
+{<h1 className="mt-10 mb-4 text-center text-[2.5rem] font-bold tracking-tight">Algorithms Universe</h1>}
 
 {<p className="mb-16 text-center text-lg text-gray-500 dark:text-gray-400">
         Empowering Minds with Algorithms: Explore the Universe.
 </p>
 }
 
+{/* Loop and show all cards */}
 <Cards>
-  <ShowcaseCard title="Node.js" href="/">
-    <>![Node.js preview](public/assets/sorts.png)</>
+  <ShowcaseCard title="Sorts" href="/algorithms/sorts">
+    <>![Sorts preview](public/assets/sorts/sorts.png)</>
   </ShowcaseCard>
 </Cards>
 
@@ -25,7 +26,6 @@ export const ShowcaseCard = Object.assign(
     defaultProps: {
       image: true,
       arrow: true,
-      target: '_blank'
     }
   }
 )

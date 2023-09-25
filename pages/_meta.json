@@ -4,7 +4,8 @@
     "title": "Home",
     "theme": {
       "typesetting": "article",
-      "layout": "full"
+      "layout": "full",
+      "timestamp": false
     }
   },
   "algorithms": {
