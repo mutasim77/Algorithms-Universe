@@ -1,10 +1,26 @@
 import React from 'react';
 import { DocsThemeConfig } from 'nextra-theme-docs';
+import Logo from './components/UI/Logo';
+import { useRouter } from 'next/router';
 
 const config: DocsThemeConfig = {
-  logo: <span>AlgoUniverse</span>,
+  logo: <Logo />,
   project: {
     link: 'https://github.com/mutasim77/Algorithms-Universe',
+  },
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== '/') {
+      return {
+        titleTemplate: '%s – Algorithms Universe'
+      }
+    }
+  },
+  editLink: {
+    text: null
+  },
+  feedback: {
+    content: null
   },
   footer: {
     text: (
@@ -36,7 +52,7 @@ const config: DocsThemeConfig = {
   navbar: {
     extraContent: <></>
   },
-  faviconGlyph: 'M',
+  faviconGlyph: '🧠',
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {

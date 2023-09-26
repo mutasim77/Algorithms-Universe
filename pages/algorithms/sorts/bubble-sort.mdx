@@ -1,7 +1,95 @@
 # Bubble sort 🫧 
 
-
+## What's Bubble Sort? 💡
+Bubble Sort is a straightforward comparison-based sorting algorithm. 
+It's called "Bubble Sort" because it makes smaller elements "bubble" 
+to the top of the list as it iterates through it. This sorting technique 
+repeatedly steps through the list, compares adjacent elements, and swaps them 
+if they are in the wrong order. This process continues until no more swaps are needed.
 
 <div className="border border-black rounded-sm">
-![](public/assets/sorts/bubble-sort.png)
+![bubble sort](public/assets/sorts/bubble-sort.png)
 </div>
+
+
+## Time Complexity: ⏱️ 
+Bubble Sort is straightforward, but it's not the most efficient sorting algorithm. 
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n^2)`    |  `O(n^2)`  |
+
+## Space Complexity: ⚙️ 
+The good thing about bubble sort is that it doesn't use much extra space. 
+Its space complexity is `O(1)`, which means it doesn't need extra memory to sort the blocks.
+
+
+> Bubble Sort is not recommended for large datasets due to its inefficient nature. 
+There are more efficient sorting algorithms like [Merge Sort](merge-sort), [Quick Sort](quick-sort) and [Heap Sort](heap-sort) 
+that perform significantly better in terms of time complexity.
+
+## Strengths of Bubble Sort 🤓
+While Bubble Sort isn't known for its efficiency, it does have a few strengths:
+
+### Simplicity: 🟣
+Bubble Sort is incredibly easy to understand and implement, 
+making it a great teaching tool for beginners in programming and computer science.
+
+### Small Datasets: ⚪️
+It can be adequate for sorting small datasets where 
+simplicity and code readability are more important than speed.
+
+
+## Weaknesses of Bubble Sort
+Despite its simplicity, Bubble Sort has several significant weaknesses:
+
+### Inefficiency: 🔴
+As mentioned earlier, Bubble Sort's time complexity makes it highly 
+inefficient for sorting large datasets.
+
+### Lack of Adaptiveness: ⚫️
+Bubble Sort doesn't adapt to the input data; it performs the same number of 
+comparisons and swaps regardless of whether the data is partially sorted or 
+completely random.
+
+### Not Suitable for Real-World Applications: 🟤
+In practical applications, you'll almost always want 
+to use more efficient sorting algorithms to save time and 
+computational resources.
+
+
+
+Now, let's see how this works in JavaScript code:
+## Code 🖋
+```js filename="bubble-sort.js" copy
+const bubbleSort = (arr) => {
+  const n = arr.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      // Compare adjacent blocks
+      if (arr[j] > arr[j + 1]) {
+        // Swap them if they're in the wrong order
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+}
+
+const numbers = [5, 2, 9, 3, 8];
+bubbleSort(numbers);
+console.log(numbers); // The blocks are now sorted: [2, 3, 5, 8, 9]
+```
+
+
+
+## Conclusion 🗯️
+Bubble Sort is a straightforward sorting algorithm that serves as a 
+valuable learning tool for those new to programming and computer science. 
+It's a great way to understand the basics of comparison-based sorting and 
+gain insights into algorithmic complexity. However, for real-world applications 
+and larger datasets, more efficient sorting algorithms like [Merge Sort](merge-sort), [Quick Sort](quick-sort) or [Heap Sort](heap-sort)  
+are recommended. Understanding Bubble Sort is like mastering the fundamentals of sorting algorithms, and it can pave the way for 
+exploring more advanced sorting techniques.
