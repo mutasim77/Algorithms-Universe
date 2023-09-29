@@ -1,3 +1,107 @@
-# Insertion sort
+# Insertion sort 🫧 
 
-_blabla_
+## What's Insertion Sort? 💡
+Insertion sort is a simple sorting algorithm that works by building 
+a sorted portion of the array or list one element at a time. It is an 
+in-place and stable sorting algorithm, meaning it doesn't require additional 
+memory allocation and maintains the relative order of equal elements. 
+Insertion sort is often used for small datasets or as part of more complex 
+sorting algorithms like the Timsort used in Python's built-in `sorted()` function.
+
+
+## How insertion sort works
+
+1. Initialization: The algorithm starts with the first element (considered to be a sorted portion of the array) and assumes that the first element is already sorted.
+
+2. Iterating Through the Unsorted Portion: The algorithm iterates through the unsorted portion of the array, one element at a time, starting with the second element.
+
+3. Insertion: For each element in the unsorted portion, the algorithm compares it with the elements in the sorted portion. It shifts elements in the sorted portion to the right until it finds the correct position for the current element. This process is repeated until all elements are in the correct order.
+
+4. Repeat: Steps 2 and 3 are repeated until the entire array is sorted.
+
+<div className="border border-black rounded-sm">
+![bubble sort](public/assets/sorts/insertion-sort.gif)
+</div>
+
+## Time Complexity: ⏱️ 
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n^2)`    |  `O(n^2)`  |
+
+1. Best-case time complexity: O(n) - When the input is already sorted, and the algorithm only needs to make one pass through the array to confirm that it's sorted.
+2. Average-case time complexity: O(n^2) - In the average case, insertion sort requires nested loops for each element.
+3. Worst-case time complexity: O(n^2) - Occurs when the input is sorted in reverse order, and the algorithm has to make the maximum number of comparisons and shifts.
+
+## Space Complexity: ⚙️ 
+The space complexity of the insertion sort algorithm is `O(1)`, 
+which means it uses constant additional memory regardless of the 
+size of the input array or list. This is because insertion sort 
+typically performs sorting "in place" and does not require any 
+additional data structures or memory allocation that scales with 
+the size of the input.
+
+
+## Advantages of Insertion Sort 🤓
+### Simple: 🟣
+It's easy to understand and implement, making it a good choice 
+for educational purposes or small tasks.
+
+### Efficient for Small Data:  ⚪️ 
+Performs well on small datasets or partially sorted data.
+
+### Stable: ⚫️
+It maintains the relative order of equal elements, making it suitable 
+for certain applications like sorting objects with multiple properties.
+
+### In-Place: 🔴
+Requires only a constant amount of additional memory, making it memory-efficient.
+
+
+## Disadvantages of Insertion Sort
+### Inefficient for Large Data: ⚪️ 
+Becomes very slow as the dataset size increases due to its quadratic time complexity `O(n^2)`.
+
+### Sensitive to Initial Order: 🔴
+Performance varies depending on the initial order of elements, and it's inefficient for reversed input.
+
+### Not Suitable for Parallelism: ⚫️
+Doesn't naturally support parallel processing, limiting its use on multi-core processors.
+
+### Inefficient Data Moves: 🟣
+Involves a lot of data movement `swaps`, which can be costly in terms of time and memory access.
+
+
+## Code 🖋
+```js filename="bubble-sort.js" copy
+const insertionSort = (arr) => {
+    const len = arr.length;
+    
+    for (let i = 1; i < len; i++) {
+        let current = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = current;
+    }
+}
+
+const unsortedArray = [5, 2, 9, 3, 6];
+insertionSort(unsortedArray);
+console.log(unsortedArray); // [2, 3, 5, 6, 9]
+```
+
+
+
+## Conclusion 🗯️
+In conclusion, Insertion sort is a straightforward and intuitive sorting algorithm 
+with some notable advantages and disadvantages. 
+Its simplicity and efficiency for small datasets or partially sorted data make 
+it a valuable tool for educational purposes and specific scenarios where its performance 
+characteristics align with the requirements.
+
+While insertion sort may not be the first choice for sorting large and unsorted datasets, 
+understanding its principles can provide a foundation for grasping more complex sorting 
+algorithms and their optimization techniques. Therefore, insertion sort continues to 
+hold educational value in computer science and programming curricula.
