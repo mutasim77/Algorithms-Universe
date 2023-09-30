@@ -1,3 +1,78 @@
-# Selection sort
+# Selection sort 🫧 
 
-_blabla_
+## What's Selection Sort? 💡
+Selection Sort is a simple [comparison-based sorting](https://en.wikipedia.org/wiki/Comparison_sort) 
+algorithm that 
+works by repeatedly finding the minimum (or maximum) element from an 
+unsorted portion of the array and moving it to the beginning (or end) 
+of the sorted portion. It continues this process until the entire array is sorted. 
+This algorithm is straightforward to understand and implement, making it a useful 
+educational tool for teaching sorting concepts.
+
+<div className="border border-black rounded-sm">
+![bubble sort](public/assets/sorts/selection-sort.gif)
+</div>
+
+
+## Time Complexity: ⏱️ 
+The time complexity of Selection Sort is quadratic, which means it's not efficient for large datasets. 
+It performs roughly n^2 comparisons and n swaps, regardless of the initial order of the elements
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n^2)`   |   `O(n^2)`    |  `O(n^2)`  |
+
+## Space Complexity: ⚙️ 
+The space complexity of Selection Sort is `O(1)`, meaning it doesn't require additional 
+memory allocation proportional to the input size. It sorts the array [in place](https://en.wikipedia.org/wiki/In-place_algorithm), making 
+it memory-efficient.
+
+
+## Strengths and Weaknesses of Selection Sort 🤓
+#### Strengths: ⚪️
+
+- Simple to understand and implement.
+- Memory-efficient (in-place sorting).
+- Stable sorting preserves the order of equal elements.
+- Suitable for small lists with low overhead.
+
+#### Weaknesses: 🔴
+
+- Highly inefficient for large datasets (quadratic time complexity).
+- Lacks adaptivity to partially sorted input.
+- Limited potential for parallel processing.
+
+## Code 🖋
+```js filename="selection-sort.js" copy
+const selectionSort = (arr) => {
+    const len = arr.length;
+
+    for (let i = 0; i < len - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < len; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex !== i) {
+            // Swap arr[i] and arr[minIndex]
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+        }
+    }
+}
+
+const numbers = [64, 25, 12, 22, 11];
+selectionSort(numbers);
+console.log(numbers); // Output: [11, 12, 22, 25, 64]
+```
+
+
+
+## Conclusion 🗯️
+Selection Sort is a straightforward sorting algorithm with 
+a predictable time and space complexity. While it's not efficient 
+for large datasets, it can be useful for educational purposes and for 
+sorting small lists or arrays where simplicity and minimal memory usage
+are more important than sorting speed. However, in most practical scenarios,
+other sorting algorithms like [Quick Sort](quick-sort) or [Merge Sort](merge-sort) are preferred for
+their better performance characteristics.
