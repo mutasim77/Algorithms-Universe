@@ -72,7 +72,7 @@ Involves a lot of data movement `swaps`, which can be costly in terms of time an
 
 
 ## Code 🖋
-```js filename="bubble-sort.js" copy
+```js filename="insertion-sort.js" copy
 const insertionSort = (arr) => {
     const len = arr.length;
     
@@ -87,9 +87,9 @@ const insertionSort = (arr) => {
     }
 }
 
-const unsortedArray = [5, 2, 9, 3, 6];
-insertionSort(unsortedArray);
-console.log(unsortedArray); // [2, 3, 5, 6, 9]
+const numbers = [5, 2, 9, 100, 3, 6];
+insertionSort(numbers);
+console.log(numbers); // [2, 3, 5, 6, 9, 100]
 ```
 
 
