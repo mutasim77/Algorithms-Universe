@@ -2,76 +2,101 @@
 
 ## What's Merge Sort? 💡
 Merge Sort is a popular and efficient sorting algorithm that falls 
-under the category of "divide and conquer" algorithms. It was developed 
+under the category of [divide and conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm#:~:text=The%20divide%2Dand%2Dconquer%20paradigm,to%20solve%20the%20given%20problem.) algorithms. It was developed 
 by John von Neumann in 1945. Merge Sort works by breaking down an unsorted 
 list into smaller sub-lists, sorting those sub-lists, and then merging them 
 back together to produce a fully sorted list. It's a stable sorting algorithm, 
 which means it maintains the relative order of equal elements.
 
-<div className="border border-black rounded-sm">
-![bubble sort](public/assets/sorts/selection-sort.gif)
-</div>
-
 
 ## Time Complexity: ⏱️ 
-The time complexity of Selection Sort is quadratic, which means it's not efficient for large datasets. 
-It performs roughly n^2 comparisons and n swaps, regardless of the initial order of the elements
+Time Complexity: Merge Sort has a time complexity of `O(n*log(n))`, 
+where `n` is the number of elements in the input array. 
+This makes it a highly efficient sorting algorithm, especially for large data sets.
 
 | Best Case  | Average Case  | Worst Case |
 | ---------- | ------------- | ---------- |
-|   `O(n^2)`   |   `O(n^2)`    |  `O(n^2)`  |
+|   `O(n*log(n))`   |   `O(n*log(n))`    |  `O(n*log(n))`  |
 
 ## Space Complexity: ⚙️ 
-The space complexity of Selection Sort is `O(1)`, meaning it doesn't require additional 
-memory allocation proportional to the input size. It sorts the array [in place](https://en.wikipedia.org/wiki/In-place_algorithm), making 
-it memory-efficient.
+Space Complexity: Merge Sort has a space complexity of `O(n)`, 
+which means it requires additional memory to store the temporary 
+sub-arrays during the sorting process. This can be a drawback for 
+very large input arrays, but it's more memory-efficient than some
+other sorting algorithms like [Quick Sort](quick-sort).
 
 
-## Strengths and Weaknesses of Selection Sort 🤓
+### Strengths and Weaknesses of Merge Sort 🤓
 #### Strengths: ⚪️
 
-- Simple to understand and implement.
-- Memory-efficient (in-place sorting).
-- Stable sorting preserves the order of equal elements.
-- Suitable for small lists with low overhead.
+- Stable Sorting: Merge Sort preserves the relative order of 
+equal elements, making it suitable for sorting objects with multiple attributes.
+
+- Predictable Performance: Its time complexity remains `O(n*log(n))` 
+regardless of the input data's initial order, making it a reliable 
+choice for various scenarios.
+
+- Parallelizable: Merge Sort is well-suited for parallel processing, 
+making it efficient on multi-core processors.
 
 #### Weaknesses: 🔴
 
-- Highly inefficient for large datasets (quadratic time complexity).
-- Lacks adaptivity to partially sorted input.
-- Limited potential for parallel processing.
+- Space Complexity: It requires additional memory for 
+temporary arrays, which can be problematic for large datasets.
+
+- Slower for Small Lists: Merge Sort might be slower 
+than some simpler algorithms like Insertion Sort for very small lists.
 
 ## Code 🖋
-```js filename="selection-sort.js" copy
-const selectionSort = (arr) => {
-    const len = arr.length;
+```js filename="merge-sort.js" copy
+const mergeSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
+  }
 
-    for (let i = 0; i < len - 1; i++) {
-        let minIndex = i;
-        for (let j = i + 1; j < len; j++) {
-            if (arr[j] < arr[minIndex]) {
-                minIndex = j;
-            }
-        }
-        if (minIndex !== i) {
-            // Swap arr[i] and arr[minIndex]
-            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-        }
-    }
+  const middle = Math.floor(arr.length / 2);
+  const left = arr.slice(0, middle);
+  const right = arr.slice(middle);
+
+  return merge(mergeSort(left), mergeSort(right));
 }
 
-const numbers = [64, 25, 12, 22, 11];
-selectionSort(numbers);
-console.log(numbers); // Output: [11, 12, 22, 25, 64]
+function merge(left, right) {
+  const result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+
+// Example usage:
+const unsortedArray = [8, 3, 1, 7, 0, 4, 2, 9, 6, 5];
+const sortedArray = mergeSort(unsortedArray);
+console.log(sortedArray); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 
+<div className="border border-black rounded-sm">
+![Merge sort](public/assets/sorts/merge-sort.gif)
+</div>
+
 
 ## Conclusion 🗯️
-Selection Sort is a straightforward sorting algorithm with 
-a predictable time and space complexity. While it's not efficient 
-for large datasets, it can be useful for educational purposes and for 
-sorting small lists or arrays where simplicity and minimal memory usage
-are more important than sorting speed. However, in most practical scenarios,
-other sorting algorithms like [Quick Sort](quick-sort) or [Merge Sort](merge-sort) are preferred for
-their better performance characteristics.
+In summary, Merge Sort is an efficient sorting algorithm with
+a time complexity of `O(n*log(n))` and a space complexity of `O(n)`. 
+Its stable sorting behavior and predictable performance make it a 
+valuable tool for a wide range of sorting tasks, especially when 
+memory usage is not a critical concern. While it may not be the best 
+choice for small lists or situations with limited memory, it shines 
+when dealing with larger datasets and can be parallelized for even 
+greater performance.
