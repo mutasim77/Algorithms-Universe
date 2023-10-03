@@ -1,3 +1,91 @@
-# Quick sort
+# Quick sort 🩶
 
-_blabla_
+## What's Quick Sort? 💡
+QuickSort is a widely used, efficient, and highly flexible sorting algorithm. 
+It is another example of a "divide and conquer" algorithm. Developed by Tony Hoare in 1960, 
+QuickSort works by selecting a `pivot` element from the array and partitioning the other 
+elements into two sub-arrays, according to whether they are less than or greater than the pivot. 
+The process is recursively applied to the sub-arrays until the entire array is sorted. 
+QuickSort is known for its average-case time complexity, making it a preferred choice for 
+many sorting applications.
+
+
+## Time Complexity: ⏱️ 
+QuickSort has an average-case time complexity of `O(nlogn)`,
+where `n` is the number of elements in the input array. 
+However, in the worst case (rare, but possible), it degrades to `O(n^2)`.
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n*log(n))`   |   `O(n*log(n))`    |  `O(n^2)`  |
+
+## Space Complexity: ⚙️ 
+QuickSort typically has a space complexity of `O(log n)` due to the recursive 
+calls on the sub-arrays. However, this can increase to `O(n)` in the worst case
+if the `pivot` choice consistently results in unbalanced partitions.
+
+
+### Strengths and Weaknesses of Quick Sort 🤓
+#### Strengths: ⚪️
+
+- Average-Case Efficiency: QuickSort is often faster in practice than other `O(n*log(n))` 
+sorting algorithms like [Merge Sort](merge-sort) due to its smaller constant factors.
+
+- In-Place Sorting: It can be implemented to sort an array in-place without 
+requiring additional memory, making it memory-efficient.
+
+- Adaptive: QuickSort can be implemented to adapt to the data, 
+potentially becoming faster when the data is partially sorted 
+or nearly sorted.
+
+#### Weaknesses: 🔴
+
+- Worst-Case Complexity: QuickSort's worst-case time complexity of O(n^2) 
+occurs when the `pivot` choice consistently results in unbalanced partitions. 
+This can be mitigated with careful pivot selection strategies.
+
+- Not Stable: QuickSort is not a stable sorting algorithm, 
+meaning it may change the relative order of equal elements.
+
+## Code 🖋
+```js filename="quick-sort.js" copy
+const quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivot = arr[0];
+  const left = [];
+  const right = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+// Example usage:
+const unsortedArray = [0, 100, 23, 1, 4, 2, 99];
+const sortedArray = quickSort(unsortedArray);
+console.log(sortedArray); // [0, 1, 2, 4, 23, 99, 100]
+```
+
+
+<div className="border border-black rounded-sm">
+![Quick sort](public/assets/sorts/quick-sort.gif)
+</div>
+
+
+## Conclusion 🗯️
+In conclusion, QuickSort is a versatile sorting algorithm known for 
+its `average-case efficiency`, `in-place` sorting capabilities, and 
+adaptability to different datasets. While it can have a worst-case 
+time complexity of `O(n^2)`, this is rare in practice and can be mitigated 
+with careful `pivot` selection strategies. QuickSort is a valuable tool for 
+sorting tasks where speed and memory efficiency are essential, 
+but stability is not a primary concern.
