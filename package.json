@@ -30,5 +30,9 @@
     "postcss": "^8.4.30",
     "tailwindcss": "^3.3.3",
     "typescript": "^4.9.3"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   }
 }
