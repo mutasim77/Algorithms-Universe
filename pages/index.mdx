@@ -2,7 +2,8 @@
 title: Algorithms Universe
 ---
 
-import { Cards } from 'nextra/components'
+import { Cards } from 'nextra/components';
+import HomeCards from '../components/CardsList/HomeCards.tsx';
 
 {<h1 className="mt-10 mb-4 text-center text-[2.5rem] font-bold tracking-tight">Algorithms Universe</h1>}
 
@@ -11,22 +12,5 @@ import { Cards } from 'nextra/components'
 </p>
 }
 
-{/* Loop and show all cards */}
-<Cards>
-  <ShowcaseCard title="Sorts" href="/algorithms/sorts">
-    <>![Sorts preview](public/assets/sorts/sorts.png)</>
-  </ShowcaseCard>
-</Cards>
+<HomeCards/>
 
-
-export const ShowcaseCard = Object.assign(
-  // Copy card component and add default props
-  Cards.Card.bind(),
-  {
-    displayName: 'ShowcaseCard',
-    defaultProps: {
-      image: true,
-      arrow: true,
-    }
-  }
-)
