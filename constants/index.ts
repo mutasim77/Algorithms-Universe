@@ -1,4 +1,5 @@
-import { cardsProps } from "../types"
+import { cardsProps } from "../types";
+import { sorts, searches } from "../public/assets";
 
 interface cardInfoProps {
     sorts: cardsProps[],
@@ -98,4 +99,17 @@ export const cardsInfo: cardInfoProps = {
             href: 'searches/exponential-search',
         },
     ]
-}
+};
+
+export const homeCardsInfo = [
+    {
+        title: 'Sorts',
+        href: 'sorts',
+        image: sorts
+    },
+    {
+        title: 'Searches',
+        href: 'searches',
+        image: searches
+    },
+];
