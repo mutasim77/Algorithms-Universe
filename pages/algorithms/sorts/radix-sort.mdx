@@ -1,3 +1,102 @@
-# Radix sort
+# Radix sort 💠 
 
-_blabla_
+## What's Radix Sort? 💡
+Radix Sort is a non-comparative sorting algorithm that works by distributing 
+elements into buckets based on their individual digits or other significant 
+positions. It sorts the elements by processing digits from the least significant 
+to the most significant (or vice versa) until the entire array is sorted. 
+Radix Sort is known for its linear time complexity when the number of digits or 
+significant positions is limited. It was first introduced by Herman Hollerith in 
+the late 19th century for sorting punched cards.
+
+## Time Complexity: ⏱️ 
+Radix Sort has a time complexity of `O(nk)`, where "n" is the number of 
+elements in the input array, and "k" is the number of digits or significant 
+positions in the largest element. When `k` is constant (limited), 
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(nk)`   |   `O(nk)`    |  `O(nk)`  |
+
+## Space Complexity: ⚙️ 
+Radix Sort typically has a space complexity of `O(n + k)` 
+since it requires additional memory for temporary storage during the sorting process.
+
+
+### Strengths and Weaknesses of Radix Sort 🤓
+#### Strengths: ⚪️
+
+- Stable Sorting: Radix Sort is inherently stable, meaning it 
+preserves the relative order of equal elements.
+
+
+
+#### Weaknesses: 🔴
+- Memory Usage: Radix Sort can be memory-intensive, especially when 
+sorting large datasets or elements with a large number of significant positions.
+
+- Limited Applicability: It's not suitable for sorting elements with 
+complex structures, such as strings with varying lengths or floating-point numbers with extreme precision.
+
+Here's a simple implementation of Radix Sort in JavaScript:
+## Code 🖋
+```js filename="radix-sort.js" copy
+const getMax = (arr) => {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+const countingSort = (arr, exp) => {
+  const n = arr.length;
+  const output = Array(n).fill(0);
+  const count = Array(10).fill(0);
+
+  for (let i = 0; i < n; i++) {
+    count[Math.floor(arr[i] / exp) % 10]++;
+  }
+
+  for (let i = 1; i < 10; i++) {
+    count[i] += count[i - 1];
+  }
+
+  for (let i = n - 1; i >= 0; i--) {
+    output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
+    count[Math.floor(arr[i] / exp) % 10]--;
+  }
+
+  for (let i = 0; i < n; i++) {
+    arr[i] = output[i];
+  }
+}
+
+const radixSort = (arr) => {
+  const max = getMax(arr);
+
+  for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+    countingSort(arr, exp);
+  }
+
+  return arr;
+}
+
+// Example usage:
+const unsortedArray = [31, 27, 28, 42, 13, 8];
+const sortedArray = radixSort(unsortedArray);
+console.log(sortedArray); // [8, 13, 27, 28, 31, 42]
+```
+
+<div className="border border-black rounded-sm">
+![radix sort](public/assets/sorts/radix-sort.gif)
+</div>
+
+## Conclusion 🗯️
+Radix Sort is a specialized sorting algorithm that performs well when the number 
+of digits or significant positions is limited. Its linear time complexity in such 
+cases makes it a valuable tool for sorting integers and other data types where the 
+key is composed of a fixed number of digits or positions. However, it may not be the 
+best choice for more complex data structures or situations with limited memory.
