@@ -1,3 +1,91 @@
-# Bucket sort
+# Bucket sort 🪣 
 
-_blabla_
+## What's Bucket Sort? 💡
+Bucket Sort is a sorting algorithm that divides the input array 
+into a set of buckets and then individually sorts each bucket, 
+typically using another sorting algorithm like(for example) insertion sort. 
+After sorting all the buckets, the elements are concatenated to 
+produce the fully sorted array. Bucket Sort is particularly effective 
+when the input data is uniformly distributed across a range. 
+It was first introduced by George Pólya in 1945.
+
+## Time Complexity: ⏱️ 
+Radix Sort has a time complexity of `O(nk)`, where "n" is the number of 
+elements in the input array, and "k" is the number of digits or significant 
+positions in the largest element. When `k` is constant (limited), 
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n + k)`   |   `O(n + k)`    |  `O(n^2)`  |
+
+## Space Complexity: ⚙️ 
+Bucket Sort typically has a space complexity of `O(n)`, where "n" is the number of elements.
+
+### Strengths and Weaknesses of Radix Sort 🤓
+#### Strengths: ⚪️
+
+- Efficient for Uniform Data: Bucket Sort performs exceptionally 
+well when the data is evenly distributed across a range, achieving linear time complexity.
+
+- Easily Parallelizable: The sorting of individual buckets can be 
+parallelized, making it efficient on multi-core processors.
+
+
+
+#### Weaknesses: 🔴
+- Not Suitable for All Data: It may not perform well when the 
+data is not uniformly distributed or when the range of values is too wide.
+
+- Bucket Overhead: Managing and sorting the buckets adds some 
+overhead, making it less efficient for small datasets. lengths or floating-point numbers with extreme precision.
+
+
+## Code 🖋
+```js filename="bucket-sort.js" copy
+const bucketSort = (arr) => {
+  const n = arr.length;
+
+  if (n <= 1) return arr;
+
+  // Determine the range of values in the array
+  const minValue = Math.min(...arr);
+  const maxValue = Math.max(...arr);
+  const bucketSize = Math.floor((maxValue - minValue) / n) + 1;
+
+  // Create an array of empty buckets
+  const buckets = Array.from({ length: n }, () => []);
+
+  // Distribute elements into buckets
+  arr.forEach((num) => {
+    const bucketIndex = Math.floor((num - minValue) / bucketSize);
+    buckets[bucketIndex].push(num);
+  });
+
+  // Sort individual buckets (you can use any sorting algorithm here)
+  buckets.forEach((bucket) => bucket.sort((a, b) => a - b));
+
+  // Concatenate the sorted buckets to produce the final sorted array
+  const sortedArray = [].concat(...buckets);
+
+  return sortedArray;
+}
+
+// Example usage:
+const unsortedArray = [1, 3, 45, 9, 23, 34, 27];
+const sortedArray = bucketSort(unsortedArray);
+console.log(sortedArray); // [1, 3, 9, 23, 27, 34, 45]
+```
+
+<div className="border border-black rounded-sm">
+![Bucket sort](public/assets/sorts/bucket-sort.gif)
+</div>
+
+## Conclusion 🗯️
+Bucket Sort is an effective sorting algorithm when dealing with 
+data that is uniformly distributed across a range. It can achieve 
+linear time complexity in such cases and is easily parallelizable, 
+making it suitable for certain parallel processing environments. 
+However, its performance may degrade when the data distribution is uneven, 
+and it can have some overhead due to bucket management. 
+Bucket Sort is a valuable sorting technique for specific scenarios where 
+the input data characteristics match its strengths.
