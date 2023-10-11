@@ -1,3 +1,84 @@
-# Counting sort
+# Counting sort 💹 
 
-_blabla_
+## What's Counting Sort? 💡
+Counting Sort is a non-comparative sorting algorithm that 
+works by counting the number of elements with distinct key values 
+(i.e., counting the occurrences of each element) and using this information to place each element 
+in its sorted position. Counting Sort is highly efficient when the 
+range of input values is small and known in advance. It was invented by Harold H. Seward in 1954.
+
+## Time Complexity: ⏱️ 
+Counting Sort has a time complexity of `O(n + k)`, where "n" is the number of 
+elements in the input array, and "k" is the range of distinct input values. 
+It is particularly efficient when "k" is relatively small.
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n + k)`   |   `O(n + k)`    |  `O(n + k)`  |
+
+## Space Complexity: ⚙️ 
+Counting Sort typically has a space complexity of `O(k)`, 
+which depends on the range of distinct values in the input.
+
+
+### Strengths and Weaknesses of Counting Sort 🤓
+#### Strengths: ⚪️
+
+- Linear Time Complexity: Counting Sort is efficient and can sort 
+data in linear time when the range of values is small.
+
+- Stable Sorting: It preserves the relative order of equal elements, 
+making it a stable sorting algorithm.
+
+
+
+#### Weaknesses: 🔴
+- Limited Applicability: Counting Sort is not suitable for 
+sorting data with a wide range of values or when the range is not known in advance.
+
+- Additional Memory: It can be memory-intensive when the range of values 
+is significantly larger than the number of elements in the array.
+
+## Code 🖋
+```js filename="counting-sort.js" copy
+const countingSort = (arr) => {
+  const n = arr.length;
+
+  // Find the maximum value in the input array
+  const max = Math.max(...arr);
+
+  // Create a counting array and initialize it with zeros
+  const count = Array(max + 1).fill(0);
+
+  // Count the occurrences of each element
+  arr.forEach((num) => count[num]++);
+
+  // Reconstruct the sorted array from the counting array
+  const sortedArray = [];
+  for (let i = 0; i <= max; i++) {
+    while (count[i] > 0) {
+      sortedArray.push(i);
+      count[i]--;
+    }
+  }
+
+  return sortedArray;
+}
+
+const unsortedArray = [11, 2, 2, 8, 4, 3, 1];
+const sortedArray = countingSort(unsortedArray);
+console.log(sortedArray); // [1, 2, 2, 3, 4, 8, 11]
+```
+
+<div className="border border-black rounded-sm">
+![Bucket sort](public/assets/sorts/counting-sort.gif)
+</div>
+
+## Conclusion 🗯️
+Counting Sort is a highly efficient sorting algorithm when dealing 
+with data that has a small range of values, especially when the range is
+known in advance. It achieves linear time complexity and preserves the 
+relative order of equal elements, making it a stable sorting algorithm. 
+However, it may not be suitable for sorting data with a wide range of values, 
+as it can become memory-intensive in such cases. Counting Sort is a valuable 
+tool for specific scenarios where its strengths align with the characteristics of the input data.
