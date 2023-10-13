@@ -1,3 +1,97 @@
 # Cocktail Shaker Sort
 
-_blabla_
+## What's Cocktail Shaker Sort? 💡
+
+Cocktail Shaker Sort, also known as Bidirectional Bubble Sort, 
+Shaker Sort, or simply Cocktail Sort, is a variation of the Bubble Sort algorithm. 
+It's called "Cocktail Shaker" because it sorts elements much like the way you'd shake a 
+cocktail by moving items in both directions. It works by repeatedly stepping through the list, 
+comparing adjacent elements, and swapping them if they are in the wrong order. 
+It continues this process until no more swaps are needed. Cocktail Shaker Sort is 
+not commonly used in practice due to its inefficiency for larger datasets.
+
+> People have given many different names to cocktail sort:
+> - Shaker Sort. 
+> - Bi-Directional Sort.
+> - Cocktail Shaker Sort.
+> - Shuttle Sort.
+> - Happy Hour Sort.
+> - Ripple Sort.
+
+## Time Complexity: ⏱️ 
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n ^ 2)`    |  `O(n ^ 2)`  |
+
+## Space Complexity: ⚙️ 
+Cocktail Shaker Sort typically has a space complexity of `O(1)` since 
+it sorts the array in-place, without requiring additional memory for temporary data structures.
+
+
+
+### Strengths and Weaknesses of Cocktail Shaker Sort 🤓
+#### Strengths: ⚪️
+
+- In-Place Sorting: Cocktail Shaker Sort sorts the array in-place, saving memory.
+
+- Stable Sorting: It is a stable sorting algorithm, meaning it preserves the relative order of equal elements.
+
+#### Weaknesses: 🔴
+- Inefficiency: Cocktail Shaker Sort is highly inefficient, especially for 
+large datasets. There are much more efficient sorting algorithms available, like QuickSort or Merge Sort.
+
+- Lack of Adaptiveness: It doesn't adapt well to partially sorted data, 
+and its performance is not guaranteed to improve in such cases.
+
+## Cocktail Shaker Sort vs Bubble Sort ➿
+This algorithm extends Bubble Sort by operating in two directions. 
+Instead of going from the start to finish, and repeating that, it goes 
+from start to finish, and then from finish to start again, in a single 
+full iteration. Effectively, it accomplishes double the work of Bubble Sort 
+in a single full iteration, though in practice it doesn't typically perform two times faster.
+
+This is because it has a similar comparison-count. It compares more elements 
+per iteration than regular Bubble Sort and it does double the swaps per iteration. 
+The reason it's faster is because the range of possible swaps per iteration gets 
+smaller and smaller, giving it a slightly better performance.
+
+## Code 🖋
+```js filename="cocktailShakerSort.js" copy
+const cocktailShakerSort = (arr) => {
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+        swapped = true;
+      }
+    }
+    if (!swapped) break;
+    swapped = false;
+    for (let j = arr.length - 2; j >= 0; j--) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return arr;
+}
+
+// Example usage:
+const unsortedArray = [2, 100, 29, 25, 61, 82, 58, 62, 23, 57, 5, 25];
+const sortedArray = cocktailShakerSort(unsortedArray);
+console.log(sortedArray); // [2, 5, 23, 25, 25, 29, 57, 58, 61, 62, 82, 100]
+```
+
+<div className="border border-black rounded-sm">
+![Bucket sort](public/assets/sorts/cocktail-shaker-sort.gif)
+</div>
+
+## Conclusion 🗯️
+Cocktail Shaker Sort, although conceptually simple, is generally not a 
+recommended sorting algorithm due to its inefficiency, especially for 
+larger datasets. There are far more efficient sorting algorithms 
+available that perform significantly better. It's often used for 
+educational purposes or as a demonstration of the Bubble Sort concept.
