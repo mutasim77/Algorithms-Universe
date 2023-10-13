@@ -1,3 +1,64 @@
-# Gnome sort
+# Gnome sort 🧸 
 
-_blabla_
+## What's Gnome Sort? 💡
+Gnome Sort, often humorously referred to as "Stupid Sort," is a simple sorting 
+algorithm that works by repeatedly moving an element to its correct position,
+much like a gnome who sorts a row of flower pots by looking at them one by one. 
+It is a basic, but not very efficient, sorting algorithm. 
+Gnome Sort can be considered a variation of Insertion Sort, where an element is 
+moved to its proper place by comparing it with the previous element.
+
+## Time Complexity: ⏱️ 
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n^2)`    |  `O(n^2)`  |
+
+## Space Complexity: ⚙️ 
+Gnome Sort typically has a space complexity of `O(1)` since 
+it sorts the array in-place, without requiring additional memory for temporary data structures.
+
+
+### Strengths and Weaknesses of Gnome Sort 🤓
+#### Strengths: ⚪️
+
+- Simplicity: Gnome Sort is straightforward to understand and implement. 
+It can serve as a simple educational example of a sorting algorithm.
+
+#### Weaknesses: 🔴
+- Inefficiency: Gnome Sort is highly inefficient, especially for larger datasets. 
+It performs poorly compared to more efficient sorting algorithms.
+
+- Lack of Adaptiveness: It doesn't adapt well to partially sorted data, and its performance 
+is not guaranteed to improve in such cases.
+
+
+Here's a simple implementation of Gnome Sort in JavaScript:
+## Code 🖋
+```js filename="gnome-sort.js" copy
+const gnomeSort = (arr) => {
+  let index = 0;
+  while (index < arr.length) {
+    if (index === 0 || arr[index] >= arr[index - 1]) {
+      index++;
+    } else {
+      [arr[index], arr[index - 1]] = [arr[index - 1], arr[index]];
+      index--;
+    }
+  }
+  return arr;
+}
+
+const unsortedArray = [71, 75, 17, 91, 7, 11, 95, 5, 9, 6];
+const sortedArray = gnomeSort(unsortedArray);
+console.log(sortedArray); // [5, 6, 7, 9, 11, 17, 71, 75, 91, 95] 
+```
+
+<div className="border border-black rounded-sm">
+![radix sort](public/assets/sorts/gnome-sort.gif)
+</div>
+
+## Conclusion 🗯️
+Gnome Sort, sometimes humorously called "Stupid Sort," is a simple sorting algorithm that 
+is not recommended for practical use due to its inefficiency, especially for larger datasets. 
+It serves more as a simple educational example or a historical curiosity than a sorting algorithm 
+of choice in real-world applications. There are much more efficient sorting algorithms available.
