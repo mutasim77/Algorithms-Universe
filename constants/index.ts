@@ -56,6 +56,10 @@ export const cardsInfo: cardInfoProps = {
             title: 'Gnome Sort',
             href: 'sorts/gnome-sort',
         },
+        {
+            title: 'Bogosort',
+            href: 'sorts/bogo-sort',
+        },
     ],
     searches: [
         {
