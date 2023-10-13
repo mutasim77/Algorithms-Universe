@@ -1,3 +1,148 @@
-# Timsort
+# Timsort 💹 
 
-_blabla_
+## What's Timsort ? 💡
+TimSort is a hybrid sorting algorithm derived from Merge Sort and Insertion Sort. 
+It was designed to take advantage of the strengths of both algorithms while mitigating 
+their weaknesses. Developed by Tim Peters for the Python programming language, TimSort 
+is now widely used in various programming languages and libraries as the default sorting 
+algorithm. It operates by dividing the input array into small chunks, sorting these chunks 
+using a combination of Merge Sort and Insertion Sort, and then merging the sorted chunks 
+to produce the final sorted array.
+
+## Time Complexity: ⏱️ 
+Counting Sort has a time complexity of `O(n + k)`, where "n" is the number of 
+elements in the input array, and "k" is the range of distinct input values. 
+It is particularly efficient when "k" is relatively small.
+
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n * log(n))`    |  `O(n * log(n))`  |
+
+## Space Complexity: ⚙️ 
+TimSort has a space complexity of O(n), 
+as it typically requires additional memory for temporary storage during the sorting process.
+
+### Strengths and Weaknesses of TimSort 🤓
+#### Strengths: ⚪️
+
+- Efficient on Real-World Data: TimSort is designed for real-world data, 
+which is often partially sorted. It adapts well to the data's characteristics, 
+potentially making it faster than some other sorting algorithms.
+
+- Stable Sorting: TimSort is a stable sorting algorithm, 
+meaning it preserves the relative order of equal elements.
+
+- Minimal Memory Overhead: While it does require additional memory 
+for temporary storage, the overhead is usually minimal, making it practical for most scenarios.
+
+
+
+#### Weaknesses: 🔴
+- Complexity of Implementation: Implementing TimSort can be more complex compared 
+to simpler sorting algorithms like Insertion Sort or Bubble Sort.
+
+## Code 🖋
+```js filename="timsort.js" copy
+const MIN_MERGE = 32;
+
+function calculateMinRun(n) {
+  let r = 0;
+  while (n >= MIN_MERGE) {
+    r |= n & 1;
+    n >>= 1;
+  }
+  return n + r;
+}
+
+function insertionSort(arr, left = 0, right = arr.length) {
+  for (let i = left + 1; i < right; i++) {
+    let current = arr[i];
+    let j = i - 1;
+    while (j >= left && arr[j] > current) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = current;
+  }
+}
+
+function merge(arr, left, mid, right) {
+  const len1 = mid - left + 1;
+  const len2 = right - mid;
+  const leftArr = new Array(len1);
+  const rightArr = new Array(len2);
+
+  for (let i = 0; i < len1; i++) leftArr[i] = arr[left + i];
+  for (let i = 0; i < len2; i++) rightArr[i] = arr[mid + 1 + i];
+
+  let i = 0;
+  let j = 0;
+  let k = left;
+
+  while (i < len1 && j < len2) {
+    if (leftArr[i] <= rightArr[j]) {
+      arr[k] = leftArr[i];
+      i++;
+    } else {
+      arr[k] = rightArr[j];
+      j++;
+    }
+    k++;
+  }
+
+  while (i < len1) {
+    arr[k] = leftArr[i];
+    i++;
+    k++;
+  }
+
+  while (j < len2) {
+    arr[k] = rightArr[j];
+    j++;
+    k++;
+  }
+}
+
+function timsort(arr) {
+  const n = arr.length;
+  const minRun = calculateMinRun(n);
+
+  for (let i = 0; i < n; i += minRun) {
+    insertionSort(arr, i, Math.min(i + minRun, n));
+  }
+
+  for (let size = minRun; size < n; size = 2 * size) {
+    for (let left = 0; left < n; left += 2 * size) {
+      const mid = Math.min(left + size - 1, n - 1);
+      const right = Math.min(left + 2 * size - 1, n - 1);
+      if (mid < right) {
+        merge(arr, left, mid, right);
+      }
+    }
+  }
+  return arr;
+}
+
+// Example usage:
+const unsortedArray = [8, 3, 1, 7, 0, 4, 2, 9, 6, 5];
+const sortedArray = timsort(unsortedArray);
+console.log(sortedArray); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+> This implementation of TimSort performs well for many real-world scenarios. 
+Please note that it's a simplified version, and the actual implementation used in libraries or 
+languages is more complex and optimized for performance.
+
+
+<div className="border border-black rounded-sm">
+![Bucket sort](public/assets/sorts/timsort.gif)
+</div>
+
+## Conclusion 🗯️
+TimSort is a powerful and efficient sorting algorithm that 
+adapts well to real-world data, making it a popular choice 
+in many programming languages and libraries. 
+Its average and worst-case time complexity of `O(n log n)` ensures it 
+performs well on large datasets, and its stability ensures the relative order of equal 
+elements is preserved. While the implementation can be more complex, its benefits often 
+outweigh the additional effort, especially for applications with varying data characteristics.
