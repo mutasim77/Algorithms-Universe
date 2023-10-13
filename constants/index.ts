@@ -60,6 +60,10 @@ export const cardsInfo: cardInfoProps = {
             title: 'Bogosort',
             href: 'sorts/bogo-sort',
         },
+        {
+            title: 'Humor Sorts',
+            href: 'sorts/humor-sorts',
+        },
     ],
     searches: [
         {
