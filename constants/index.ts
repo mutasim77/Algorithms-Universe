@@ -45,7 +45,7 @@ export const cardsInfo: cardInfoProps = {
             href: 'sorts/counting-sort',
         },
         {
-            title: 'Timsort Sort',
+            title: 'Timsort',
             href: 'sorts/timsort',
         },
         {
