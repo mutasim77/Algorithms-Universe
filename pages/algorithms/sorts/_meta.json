@@ -10,5 +10,7 @@
     "counting-sort": "Counting Sort",
     "timsort": "Timsort",
     "cocktail-shaker-sort": "Cocktail Shaker Sort",
-    "gnome-sort": "Gnome Sort"
+    "gnome-sort": "Gnome Sort",
+    "bogo-sort": "Bogosort",
+    "humor-sorts": "Humor Sorts"
 }

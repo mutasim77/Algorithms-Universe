@@ -1,0 +1,70 @@
+# Bogosort 🥴
+
+## What's Bogosort? 💡
+BogoSort or "Monkey Sort" is an impractical and humorous sorting algorithm.
+It's often humorously referred to as a "stupid sort" because it relies on pure luck to sort the elements.
+BogoSort takes a novel approach to sorting by randomly permuting the elements in an array until it stumbles 
+upon a permutation where the array is sorted. It relies solely on random chance and can take an indefinite 
+amount of time to complete, making it one of the most inefficient sorting algorithms.
+
+## Time Complexity: ⏱️ 
+| Best Case  | Average Case  | Worst Case |
+| ---------- | ------------- | ---------- |
+|   `O(n)`   |   `O(n * n!)`    |  `O(∞)`  |
+
+## Space Complexity: ⚙️ 
+The space complexity is `O(1)` because it doesn't require additional memory.
+
+### Strengths and Weaknesses of Bogosort 🥴
+#### Strengths: ⚪️
+
+- Simplicity: BogoSort is incredibly simple to understand and implement.
+
+#### Weaknesses: 🔴
+- Extreme Inefficiency: BogoSort is an incredibly inefficient and impractical 
+sorting algorithm. It has no guaranteed time frame for sorting, and the chances 
+of sorting even small datasets are astronomically low.
+
+- No Practical Use: It's used primarily for humor and is not suitable for any real-world applications.
+
+## Code 🖋
+```js filename="bogosort.js" copy
+function isSorted(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < arr[i - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function bogosort(arr) {
+  while (!isSorted(arr)) {
+    arr = shuffle(arr);
+  }
+  return arr;
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const unsortedArray = [123, 3, 1, 7, 0, 4, 2, 9, 6, 5, 22, 0, 123, 1, 0];
+const sortedArray = bogosort(unsortedArray); // still sorting... 😂
+console.log(sortedArray); 
+```
+
+<div className="border border-black rounded-sm">
+![radix sort](public/assets/sorts/bogosort.gif)
+</div>
+
+## Conclusion 🗯️
+Bogosort is a joke sorting algorithm that relies on sheer luck to sort an array. 
+While it's simple to understand, its extreme inefficiency and unpredictability make 
+it entirely unsuitable for any practical use. It's typically used as a humorous example 
+of what not to do when designing sorting algorithms and serves as a reminder of the importance 
+of efficiency in algorithm design.
