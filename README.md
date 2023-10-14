@@ -2,7 +2,7 @@
   <img src="public/logo.png" alt="Algorithms Universe Logo" style="width: 150px;">
 </p>
 
-<h1 style="text-align: center;">AlgoUniverse 🧠</h1>
+<h1 align="center">AlgoUniverse 🧠</h1>
 
 Welcome to the Algorithms Universe, where the incredible world of algorithms unfolds before your eyes. 🚀
 
