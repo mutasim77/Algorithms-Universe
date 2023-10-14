@@ -48,6 +48,6 @@ git push origin feature/your-feature
 Once your pull request is submitted, it will undergo a review. Be open to feedback and address any comments or suggestions made by maintainers or contributors.
 
 ### Contribution Acceptance 🎉
-Once your contribution is accepted, it will be merged into the main repository. Congratulations, and thank you for your contribution to Algorithmm Universe! ❤️
+Once your contribution is accepted, it will be merged into the main repository. Congratulations, and thank you for your contribution to Algorithmm Universe! ❤️‍🔥
 
 Happy coding! 🚀🎨
