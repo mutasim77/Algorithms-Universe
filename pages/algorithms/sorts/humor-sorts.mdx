@@ -40,7 +40,30 @@ though this division has no discernible impact on resources, given that it occur
 
 ### Sleep Sort😴⏳
 
+Sleep Sort is an unusual sorting method where each number in the input array 
+creates a separate "sleeping" thread. The thread that wakes up first represents 
+the smallest number, and this continues until the largest number awakens, producing 
+a sorted output. However, it has limitations: it can't handle negative numbers, and large 
+numbers slow it down. Plus, it may not always sort correctly in certain scenarios. This algorithm 
+relies on the operating system's scheduling, and its time complexity is debated but is roughly 
+`O(n*log(n) + max(input))`. 
+
+In a nutshell, `Sleep Sort` is a fun and quirky way to sort numbers while 
+utilizing the operating system's [multithreading](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture))
+and scheduling capabilities.
+
 ### Intelligent Design Sort🧠
+
+**Intelligent Design Sort** is a sorting algorithm based on the theory of [intelligent design.](https://en.wikipedia.org/wiki/Intelligent_design)
+
+The algorithm posits that the likelihood of the input list being in its current order by 
+random chance is exceedingly small `1/(n!)`, suggesting that it must have been intentionally 
+arranged by an intelligent entity. Therefore, it's assumed that the list is already optimally 
+sorted in a way beyond our understanding of traditional _ascending order._ Any attempt to change 
+this order to fit our human notions of sorting would only make it less sorted.
+
+**Analysis:** This algorithm operates in _constant time O(1)_, sorting the list _in-place_ without requiring any 
+additional memory or conventional computer technology.
 
 ### Miracle Sort✨🪄
 
