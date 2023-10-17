@@ -57,12 +57,12 @@ export const cardsInfo: cardInfoProps = {
             href: 'sorts/gnome-sort',
         },
         {
-            title: 'Bogosort',
-            href: 'sorts/bogo-sort',
-        },
-        {
             title: 'Humor Sorts',
             href: 'sorts/humor-sorts',
+        },
+        {
+            title: 'Bogosort',
+            href: 'sorts/bogo-sort',
         },
     ],
     searches: [
