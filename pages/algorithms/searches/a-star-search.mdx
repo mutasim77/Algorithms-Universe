@@ -1,0 +1,83 @@
+# A* Search Algorithm
+
+The A* search algorithm, pronounced **"A-stare"** is an informed search 
+algorithm that balances the need to explore the search space efficiently 
+with the aim of finding the shortest path. It is widely used in pathfinding 
+and graph traversal, especially in scenarios where finding the optimal path is essential.
+
+## How Does A Search Work? 🕵️‍♂️
+
+A* search combines the concepts of breadth-first search and a heuristic evaluation function. 
+It operates with the following steps:
+
+1. Start at the initial node (usually the start node) and add it to an open list.
+2. While the open list is not empty:
+    - Choose the node with the lowest estimated cost to reach the target (usually a combination of the actual cost from the start node and a heuristic cost).
+    - Expand this node by considering all of its neighbors.
+    - Calculate the estimated cost of each neighbor (usually a sum of the cost to reach the neighbor from the current node and a heuristic cost to reach the target from the neighbor).
+    - Add the neighbors to the open list and mark the current node as visited.
+    - If the target node is reached, the search is complete, and the optimal path can be reconstructed.
+
+> The key to A*'s efficiency and optimality lies in its use of heuristics, which provide informed estimates of the remaining cost to reach the target from a given node.
+
+## Complexity Analysis 📊
+
+#### Time Complexity: 
+The time complexity of A* search depends on the implementation and 
+the specifics of the heuristic used. In the worst case, it can be 
+exponential, but with an admissible and consistent heuristic, it 
+becomes very efficient, often outperforming other search algorithms. 
+The time complexity is generally expressed as `O(b^d)`, where "b" is the 
+branching factor (average number of successors per node) and "d" is the depth 
+of the optimal solution.
+
+#### Space Complexity: 
+The space complexity depends on the size of the open and closed 
+lists and the data structure used for storing them. 
+In the worst case, it can be exponential, but this can be mitigated by 
+using memory-efficient data structures. The space complexity is typically expressed as `O(b^d)`
+
+## Applications of A* Search Algorithm  🌍
+
+- Pathfinding: Finding the shortest path in games, robotics, and navigation systems.
+- Routing and Navigation: Optimal route planning in maps and GPS systems.
+- Network Routing: Efficient data routing in computer networks.
+- Artificial Intelligence: Solving puzzles, planning, and optimization problems.
+- Industrial Automation: Path planning for robots and machinery in manufacturing and logistics.
+
+> Due to its complexity and lengthy code, instead of providing the actual implementation code, I will provide some pseudocode and references where you can check the actual code.
+
+```js filename="pseudocode" 
+function AStarSearch(graph, start, target):
+    create an open list
+    create a closed list
+    add the start node to the open list
+
+    while the open list is not empty:
+        current = node with the lowest estimated cost in the open list
+        remove current from the open list
+        add current to the closed list
+
+        if current is the target node:
+            return the path from start to target
+
+        for each neighbor of current:
+            if neighbor is in the closed list:
+                skip to the next neighbor
+            if neighbor is not in the open list:
+                calculate the estimated cost for neighbor
+                add neighbor to the open list
+
+    return no path found
+```
+Here are some references that provide detailed information and implementation code for the A* search algorithm:
+- [GeeksForGeeks](https://www.geeksforgeeks.org/a-search-algorithm/)
+- [Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
+
+## Conclusion 🌟
+The A* search algorithm is a versatile and powerful tool for solving a wide range 
+of problems that involve finding the shortest path. Its ability to combine the 
+strengths of heuristic evaluation and systematic exploration makes it a go-to 
+choice in various fields, from game development to network routing and artificial 
+intelligence. Understanding A* search provides you with a valuable skill for tackling 
+complex optimization and pathfinding challenges. 
