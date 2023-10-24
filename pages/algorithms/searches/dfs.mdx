@@ -1,0 +1,121 @@
+# Depth-First Search (DFS) 🌲
+
+Depth-First Search (DFS) is an algorithm used to explore data structures, 
+particularly trees and graphs, by traversing as far as possible along a branch 
+before backtracking. It follows a pattern that resembles "depth-first," diving 
+deep into the data structure before exploring other branches. This algorithm has 
+applications in various domains, including computer science, artificial intelligence, and web crawling.
+
+## How Does Depth-First Search Work? 🚶‍♂️
+
+DFS operates with the following steps:
+
+1. Start at a designated node or vertex in the graph or tree.
+2. Explore as far as possible along a branch before backtracking.
+3. Mark visited nodes to avoid revisiting them.
+4. Continue this process until all nodes have been visited.
+
+<div className="border border-black rounded-sm">
+![dfs](public/assets/searches/dfs.gif)
+</div>
+
+> DFS can be implemented using either recursion or an explicit stack data structure. The choice between these methods can affect the algorithm's performance and memory consumption.
+
+Here's a simplified pseudocode representation of DFS using recursion:
+```js
+function DFS(node):
+    if node is not visited:
+        mark node as visited
+        for each neighbor of node:
+            if neighbor is not visited:
+                DFS(neighbor)
+```
+
+## Applications of Depth-First Search 🌐
+
+Depth-First Search has a wide range of applications in various domains:
+
+- Graph Traversal: DFS is commonly used for traversing and exploring graphs, identifying connected components, and determining paths between nodes.
+- Maze Solving: It can be employed in solving mazes by exploring possible paths.
+- Web Crawling: Web crawlers often use DFS to navigate websites and gather information.
+- Topological Sorting: DFS plays a vital role in topological sorting, which is used in scheduling tasks with dependencies.
+
+## Complexity Analysis 📊
+#### Time Complexity: 
+The time complexity of DFS depends on the implementation. 
+For the standard recursive implementation, the time complexity is `O(V + E)`, 
+where `V` is the number of vertices and `E` is the number of edges. 
+In this case, it visits every vertex and edge once. However, for DFS using a stack (non-recursive), 
+the time complexity is still `O(V + E)`, but the constants may differ.
+
+#### Space Complexity: 
+The space complexity of DFS in the recursive and stack-based implementation is `O(V)`.
+
+#### Optimality: 
+DFS does not guarantee finding the shortest path. 
+It explores one branch as deeply as possible before backtracking, 
+so it may not necessarily find the shortest path in a graph.
+
+
+## JavaScript Implementation 💻
+Here's a JavaScript implementation of DFS for a simple graph:
+
+```js filename="dfs.js" copy
+class Graph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+
+    addVertex(vertex) {
+        if (!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = [];
+        }
+    }
+
+    addEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1].push(vertex2);
+        this.adjacencyList[vertex2].push(vertex1);
+    }
+
+    depthFirstSearch(startingVertex) {
+        const result = [];
+        const visited = {};
+
+        const dfs = (vertex) => {
+            if (!vertex) return;
+            visited[vertex] = true;
+            result.push(vertex);
+            for (const neighbor of this.adjacencyList[vertex]) {
+                if (!visited[neighbor]) {
+                    dfs(neighbor);
+                }
+            }
+        };
+
+        dfs(startingVertex);
+
+        return result;
+    }
+}
+
+const graph = new Graph();
+
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+
+console.log(graph.depthFirstSearch('A')); // Output: ['A', 'B', 'D', 'C', 'E']
+```
+
+## Conclusion 🌟
+Depth-First Search (DFS) is a powerful algorithm for exploring and navigating 
+complex data structures like graphs and trees. Its ability to delve deep into the 
+structure before backtracking makes it versatile and applicable in various domains. 
+Whether you're working on graph-based algorithms or web crawling, understanding DFS is a 
+valuable skill that can help you uncover hidden patterns and connections in your data. 🌟
