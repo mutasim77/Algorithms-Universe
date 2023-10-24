@@ -76,11 +76,11 @@ export const cardsInfo: cardInfoProps = {
         },
         {
             title: 'Depth-First Search',
-            href: 'searches/dfs-search',
+            href: 'searches/dfs',
         },
         {
             title: 'Breadth-First Search',
-            href: 'searches/bfs-search',
+            href: 'searches/bfs',
         },
         {
             title: 'A* Search',
@@ -89,23 +89,7 @@ export const cardsInfo: cardInfoProps = {
         {
             title: "Dijkstra's Algorithm",
             href: 'searches/dijkstra',
-        },
-        {
-            title: 'Depth-Limited Search',
-            href: 'searches/depth-limited-search',
-        },
-        {
-            title: 'Iterative Deepening Search',
-            href: 'searches/iterative-deepening-search',
-        },
-        {
-            title: 'Jump Search',
-            href: 'searches/jump-search',
-        },
-        {
-            title: 'Exponential Search',
-            href: 'searches/exponential-search',
-        },
+        }
     ]
 };
 
