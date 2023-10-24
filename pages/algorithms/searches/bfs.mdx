@@ -1,0 +1,126 @@
+# Breadth-First Search (BFS) 🌊
+
+Breadth-First Search (BFS) is an algorithm used to explore data structures, 
+particularly trees and graphs, in a systematic and level-based manner. 
+It resembles the ripple effect of a stone dropped into a pond, exploring nodes 
+in concentric circles, with each circle representing a different level of depth. 
+BFS has applications in various domains, from computer science to social network analysis.
+
+## How Does Breadth-First Search Work? 🚶‍♀️
+BFS operates with the following steps:
+
+1. Start at a designated node or vertex in the graph or tree.
+2. Explore all neighbors at the current level before moving to the next level.
+3. Mark visited nodes to avoid revisiting them.
+4. Continue this process until all nodes have been visited.
+
+
+<div className="border border-black rounded-sm">
+![dfs](public/assets/searches/bfs.gif)
+</div>
+
+> BFS is typically implemented using a queue data structure to maintain the order in which nodes are explored.
+
+Here's a simplified pseudocode representation of BFS:
+
+```js
+function BFS(startNode):
+    create an empty queue Q
+    mark startNode as visited and enqueue it in Q
+    while Q is not empty:
+        node = Q.dequeue()
+        process node
+        for each neighbor of node:
+            if neighbor is not visited:
+                mark neighbor as visited and enqueue it in Q
+```
+
+## Applications of Breadth-First Search 🌐
+Breadth-First Search is a versatile algorithm with a wide range of applications:
+
+- Shortest Path Algorithms: It's used in various shortest path algorithms, such as Dijkstra's algorithm, to find the shortest path between nodes.
+- Social Network Analysis: BFS can be employed to discover connections and degrees of separation in social networks.
+- Web Crawling: Web crawlers often use BFS to navigate websites and gather information in a structured way.
+- Network Routing: It's used in network routing protocols to discover the most efficient paths.
+
+## Complexity Analysis 📊
+#### Time Complexity: 
+The time complexity of BFS is `O(V + E)`, where V is the number of vertices 
+(nodes) and E is the number of edges in the graph or tree.
+
+#### Space Complexity: 
+The space complexity of BFS depends on the data structure used for storage. 
+In the worst case, it can be `O(V)` for maintaining a queue to store nodes during 
+traversal. However, it may be less in certain scenarios. For example, if you only 
+need to mark visited nodes and don't need to store the entire graph structure,
+the space complexity can be reduced to `O(V)`.
+
+#### Optimality: 
+BFS is guaranteed to find the shortest path in an unweighted graph 
+because it explores nodes level by level. It is optimal for finding 
+the shortest path in this context.
+
+### JavaScript Implementation 💻
+
+```js filename="bfs.js" copy
+class Graph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+
+    addVertex(vertex) {
+        if (!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = [];
+        }
+    }
+
+    addEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1].push(vertex2);
+        this.adjacencyList[vertex2].push(vertex1);
+    }
+
+    breadthFirstSearch(startingVertex) {
+        const result = [];
+        const visited = {};
+        const queue = [];
+
+        queue.push(startingVertex);
+        visited[startingVertex] = true;
+
+        while (queue.length > 0) {
+            const currentVertex = queue.shift();
+            result.push(currentVertex);
+
+            for (const neighbor of this.adjacencyList[currentVertex]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
+const graph = new Graph();
+
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+
+console.log(graph.breadthFirstSearch('A')); // Output: ['A', 'B', 'C', 'D', 'E']
+```
+
+## Conclusion 🌟
+Breadth-First Search (BFS) is a powerful algorithm for exploring and navigating complex 
+data structures like graphs and trees in a systematic, level-based manner. Its ability to 
+discover nodes level by level makes it valuable in various domains, from shortest path algorithms 
+to social network analysis and web crawling. Understanding BFS is a valuable skill that can help 
+you uncover hidden connections and patterns in your data. 🌟
