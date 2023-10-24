@@ -1,0 +1,108 @@
+# Dijkstra's Algorithm 🛤️
+
+Dijkstra's algorithm, developed by Edsger W. Dijkstra in 1956, is an algorithm used for 
+finding the shortest path from a source node to all other nodes in a weighted graph. 
+It is particularly useful when working with networks, such as road networks, computer 
+networks, and more. The algorithm ensures the shortest path is found efficiently and accurately.
+
+## How Does Dijkstra's Algorithm Work? 🤓
+Dijkstra's algorithm operates with the following steps:
+
+1. Initialize the distance from the source node to itself as 0 and the distance to all other nodes as infinity. Create a set of unvisited nodes.
+
+2. Select the unvisited node with the smallest distance (the source node initially) and mark it as visited.
+
+3. For the selected node, consider all of its unvisited neighbors and calculate their tentative distances through the current node. Compare the newly calculated tentative distance to the current assigned value and update it if it's smaller.
+
+4. After considering all of the unvisited neighbors of the current node, mark the current node as visited. A visited node will not be checked again.
+
+5. Select the next unvisited node with the smallest tentative distance and repeat steps 3 and 4.
+
+6. Continue this process until all nodes have been visited, or the target node is reached (if you are looking for the shortest path to a specific node).
+
+<div className="border border-black rounded-sm">
+![Dijkstra](public/assets/searches/dijkstra.gif)
+</div>
+
+## Complexity Analysis 📊
+
+### Time Complexity: 
+The time complexity of Dijkstra's algorithm depends on the data structure 
+used for selecting the node with the smallest tentative distance. When using 
+a binary heap or Fibonacci heap, it has a time complexity of `O(E + V log V)`, 
+where "E" is the number of edges and "V" is the number of vertices. In the worst 
+case, it can be `O(V^2)` when using an array or a simple list to store distances.
+
+### Space Complexity: 
+The space complexity depends on the data structures used for 
+storing distances and the graph representation. It is typically `O(V)` for storing distances 
+and `O(E + V)` for storing the graph.
+
+### Optimality: 
+Dijkstra's algorithm is optimal for finding the shortest path in graphs with _non-negative_ edge weights.
+
+## Real-World Usage 🌍
+
+- Route Planning: Finding the shortest path in maps and GPS systems.
+- Transportation: Managing and optimizing traffic flow in urban planning.
+- Robotics: Path planning for autonomous robots and drones.
+- Air Travel: Scheduling and optimizing air travel routes.
+- Game Development: Pathfinding in video games.
+
+### JavaScript Implementation
+
+```js filename="dijkstra.js" copy
+function dijkstra(graph, source) {
+    const distances = {};
+    const visited = new Set();
+    
+    for (const node in graph) {
+        distances[node] = Infinity;
+    }
+    distances[source] = 0;
+
+    while (true) {
+        let current = null;
+        
+        for (const node in graph) {
+            if (!visited.has(node) && (current === null || distances[node] < distances[current])) {
+                current = node;
+            }
+        }
+
+        if (current === null) break;
+
+        visited.add(current);
+
+        for (const neighbor in graph[current]) {
+            const tentativeDistance = distances[current] + graph[current][neighbor];
+            if (tentativeDistance < distances[neighbor]) {
+                distances[neighbor] = tentativeDistance;
+            }
+        }
+    }
+
+    return distances;
+}
+
+// Example graph
+const graph = {
+    A: { B: 1, C: 4 },
+    B: { A: 1, C: 2, D: 5 },
+    C: { A: 4, B: 2, D: 1 },
+    D: { B: 5, C: 1 },
+};
+
+const sourceNode = 'A';
+const shortestDistances = dijkstra(graph, sourceNode);
+
+console.log('Shortest distances from', sourceNode, 'to all nodes:', shortestDistances);
+```
+
+## Conclusion 🌟
+Dijkstra's algorithm is a fundamental tool for solving a wide range of 
+problems related to finding the shortest path in weighted graphs. 
+Its efficient and optimal approach makes it suitable for applications like route planning, 
+network optimization, finding the shortest path on maps(e.g. Google Maps), and pathfinding in games. 
+Understanding Dijkstra's algorithm equips you with the ability to tackle complex optimization 
+challenges in various fields.
