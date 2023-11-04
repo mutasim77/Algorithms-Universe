@@ -1,8 +1,8 @@
-import sorts from './sorts/sorts.png';
-import searches from './searches/searches.png';
+import sortsImg from './sorts/sorts.png';
+import searchesImg from './searches/searches.png';
 
 
 export {
-    sorts,
-    searches
+    sortsImg,
+    searchesImg
 }
