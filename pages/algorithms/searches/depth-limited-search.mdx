@@ -1,0 +1,125 @@
+# Depth-Limited Search 🚦
+
+Depth-Limited Search _(DLS)_ is a modification of the Depth-First Search _(DFS)_ algorithm. 
+While DFS explores data structures with no constraints on depth, DLS is restricted by a 
+specified depth limit. This constraint makes it particularly useful when searching for 
+solutions within a specific depth range in a tree or graph.
+
+## How Does Depth-Limited Search Work? 🚶‍♂️
+
+DLS operates with the following steps:
+1. Start at the initial node or vertex of the tree or graph.
+2. Explore the neighbors or children of the current node, but only up to the specified depth limit.
+3. If the depth limit is reached or no more unexplored neighbors exist within the limit, backtrack to the parent node.
+4. Continue this process, incrementing the depth limit as needed, until the target node is found or the entire search space has been explored.
+
+Here's a simplified pseudocode representation of DLS:
+
+```js filename="pseudocode" 
+function depthLimitedSearch(node, target, depthLimit):
+    if node equals target:
+        return true // Target found
+    if depthLimit equals 0:
+        return false // Depth limit reached
+    for each neighbor of node:
+        if depthLimitedSearch(neighbor, target, depthLimit - 1) is true:
+            return true // Target found in child node
+    return false // Target not found in this branch
+```
+
+<div className="border border-black rounded-sm">
+![DLS](public/assets/searches/dls.png)
+</div>
+
+## Complexity Analysis 📊
+### Time Complexity: 
+Time complexity of DLS algorithm is ```O(b^l)``` where _b_ is known as the branching factor 
+(number of children at each node) and _l_ is the given depth limit.
+
+### Space Complexity: 
+Space complexity of DLS algorithm is `O(b*l)` where _b_ is known as the 
+branching factor (number of children at each node) and _l_ is the given depth limit.
+
+### Optimality: 
+DLS is not guaranteed to find the optimal solution. 
+It explores the search space within the depth limit and may return a 
+solution if it exists within that limit. If the optimal solution lies beyond 
+the depth limit, DLS will not find it.
+
+## Applications of Depth-Limited Search 🌐
+Depth-Limited Search is applied in various real-world scenarios, especially when dealing with constrained depth exploration:
+
+- Game Tree Search: DLS is commonly used in game AI algorithms to limit the depth of exploring potential game moves, especially in games with extensive branching possibilities.
+- Artificial Intelligence: In AI algorithms, DLS can be applied to limit the exploration of decision trees within a specific time frame.
+- Puzzle Solving: DLS is used in puzzle-solving scenarios, such as solving mazes or finding optimal solutions within a certain number of moves.
+- Web Crawling: In web crawling and scraping, DLS can be employed to limit the depth of web page exploration to a specific level.
+
+## JavaScript Implementation 💻
+
+```js filename="depthLimitedSearch.js" copy
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.children = [];
+    }
+}
+
+function depthLimitedSearch(node, target, depthLimit) {
+    if (node.value === target) {
+        return true; // Target found
+    }
+    if (depthLimit === 0) {
+        return false; // Depth limit reached
+    }
+    for (const child of node.children) {
+        if (depthLimitedSearch(child, target, depthLimit - 1)) {
+            return true; // Target found in a child node
+        }
+    }
+    return false; // Target not found in this branch
+}
+
+// Create a sample tree
+const root = new Node(1);
+const node2 = new Node(2);
+const node3 = new Node(3);
+const node4 = new Node(4);
+const node5 = new Node(5);
+
+root.children = [node2, node3];
+node2.children = [node4];
+node4.children = [node5];
+
+/*
+    level-0             (1)
+                       /  \
+    level-1         (2)   (3)
+                   /   
+    level-2      (4)
+                /
+    level-3   (5)
+*/
+
+const targetValue = 5;
+const depthLimit = 3;
+
+const result = depthLimitedSearch(root, targetValue, depthLimit);
+
+if (result) {
+    console.log(`Target ${targetValue} found within depth limit of ${depthLimit}.`);
+} else {
+    console.log(`Target ${targetValue} not found within depth limit of ${depthLimit}.`);
+}
+
+// Result: Target 5 found within depth limit of 3.
+```
+
+> This JavaScript code demonstrates a simple implementation of Depth-Limited Search within a tree structure.
+
+## Conclusion 🌟
+Depth-Limited Search (DLS) is a valuable algorithm when you need to 
+explore data structures with depth constraints. Whether you're developing 
+game AI, solving puzzles, or limiting web crawling depths, DLS is a practical 
+approach for efficiently navigating data within specified limits. Understanding 
+DLS provides you with a useful tool for managing and optimizing depth-limited exploration 
+in various scenarios. 🌟

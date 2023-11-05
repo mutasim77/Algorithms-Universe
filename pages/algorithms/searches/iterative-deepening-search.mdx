@@ -1,0 +1,132 @@
+# Iterative Deepening Search 🚀
+
+Iterative Deepening Search is a systematic and versatile search algorithm that 
+gradually increases the depth of exploration in a tree or graph. It starts with 
+a shallow depth limit and incrementally deepens it until the desired solution is 
+found. This approach combines the advantages of BFS, which guarantees optimality, 
+with the memory efficiency of DFS.
+
+## How Does Iterative Deepening Search Work? 👒
+
+IDS operates with the following steps:
+
+1. Start with a shallow depth limit (usually 0) and perform a Depth-Limited Search (DLS) with this limit.
+2. If the solution is found within the current depth limit, return it. Otherwise, continue to step 3.
+3. Increment the depth limit by 1 and repeat the DLS with the new limit.
+4. Continue this process until the solution is found or all nodes in the tree or graph have been explored.
+
+The key insight of IDS is that it ensures the optimal solution is found by gradually 
+increasing the depth limit. It explores nodes level by level, which is why it is often 
+considered an improvement over pure DFS while maintaining memory efficiency.
+
+Here's a simplified pseudocode representation of Iterative Deepening Search:
+
+```js filename="pseudocode"
+function iterativeDeepeningSearch(graph, source, target):
+    depthLimit = 0
+    while true:
+        result = depthLimitedSearch(graph, source, target, depthLimit)
+        if result is a solution:
+            return result
+        depthLimit++
+```
+
+<div className="border border-black rounded-sm">
+![DLS](public/assets/searches/iddfs.png)
+</div>
+
+
+## Complexity Analysis for Iterative Deepening Search (IDS)
+### Time Complexity: 
+The time complexity of Iterative Deepening Search depends on the branching factor 
+(average number of successors per node) and the depth of the optimal solution. In 
+the worst case, IDS explores nodes up to the depth of the optimal solution, leading 
+to a time complexity of ```O(b^d)```, where _"b"_ is the branching factor, and _"d"_ is the 
+depth of the optimal solution. This makes IDS optimal.
+
+### Space Complexity: 
+The space complexity is determined by the depth limit of the search. 
+In the worst case, it can be ```O(b*d)```, where _"b"_ is the branching factor and _"d"_ 
+is the depth limit. However, it should be noted that IDS maintains relatively 
+low memory usage compared to traditional BFS.
+
+### Optimality: 
+Iterative Deepening Search is optimal because it explores nodes 
+in order of increasing depth. When a solution is found, it is 
+guaranteed to be the optimal solution at that depth.
+
+
+## Applications of Iterative Deepening Search (IDS)
+IDS has applications in various fields, including:
+- Puzzle Solving: Solving puzzles with unknown depths, such as the Towers of Hanoi or sliding tile puzzles.
+- Game AI: In game AI, IDS is used for searching game trees to find the best move within a limited time frame.
+- Planning and Scheduling: Solving planning and scheduling problems where the depth of a solution may vary.
+- Network Routing: In network routing, where the optimal path needs to be found with limited computational resources.
+
+
+## Implementation
+
+```js filename="" copy
+function iterativeDeepeningSearch(graph, source, target) {
+    let depthLimit = 0;
+    while (true) {
+        const result = depthLimitedSearch(graph, source, target, depthLimit);
+        if (result !== null) {
+            return result; // Solution found
+        }
+        depthLimit++;
+    }
+    return null; // No solution found
+}
+
+function depthLimitedSearch(graph, current, target, depthLimit) {
+    if (current === target) {
+        return current; // Solution found
+    }
+    if (depthLimit <= 0) {
+        return null; // Depth limit reached
+    }
+    for (const neighbor of graph[current]) {
+        const result = depthLimitedSearch(graph, neighbor, target, depthLimit - 1);
+        if (result !== null) {
+            return result; // Solution found in a child node
+        }
+    }
+    return null; // No solution found in this branch
+}
+
+// Example tree
+const graph = {
+    A: ['B', 'C'],
+    B: ['D', 'E'],
+    C: ['F', 'G'],
+    D: ['H', 'I'],
+    E: [],
+    F: [],
+    G: [],
+    H: [],
+    I: ['J'],
+    J: [],
+};
+
+const sourceNode = 'A';
+const targetNode = 'J';
+
+const result = iterativeDeepeningSearch(graph, sourceNode, targetNode);
+
+if (result !== null) {
+    console.log('Solution found:', result);
+} else {
+    console.log('No solution found.');
+}
+
+// Result : Solution found: "J"
+```
+> This JavaScript code demonstrates an implementation of Iterative Deepening Search for a simple tree structure.
+
+## Conclusion 🌟
+Iterative Deepening Search _(IDS or IDDFS)_ is a powerful and efficient search algorithm 
+that combines the best aspects of BFS and DFS. It allows you to explore data 
+structures systematically while ensuring the optimal solution is found. Whether 
+you're tackling puzzles, game AI, or planning problems, IDS equips you with a 
+versatile tool for efficiently searching through complex spaces.

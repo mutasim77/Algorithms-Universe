@@ -1,8 +1,12 @@
 {
     "linear-search": "Linear Search",
     "binary-search": "Binary Search",
+    "jump-search": "Jump Search",
+    "exponential-search": "Exponential Search",
     "dfs": "Depth-First Search (DFS)",
     "bfs": "Breadth-First Search (BFS)",
     "a-star-search": "A* Search",
-    "dijkstra": "Dijkstra's Algorithm"
+    "dijkstra": "Dijkstra's Algorithm",
+    "depth-limited-search": "Depth-Limited Search",
+    "iterative-deepening-search": "Iterative Deepening Search"
 }

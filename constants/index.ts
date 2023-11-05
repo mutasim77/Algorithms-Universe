@@ -1,5 +1,5 @@
 import { cardsProps } from "../types";
-import { sorts, searches } from "../public/assets";
+import { sortsImg, searchesImg } from "../public/assets";
 
 interface cardInfoProps {
     sorts: cardsProps[],
@@ -57,12 +57,12 @@ export const cardsInfo: cardInfoProps = {
             href: 'sorts/gnome-sort',
         },
         {
-            title: 'Humor Sorts',
-            href: 'sorts/humor-sorts',
-        },
-        {
             title: 'Bogosort',
             href: 'sorts/bogo-sort',
+        },
+        {
+            title: 'Humor Sorts',
+            href: 'sorts/humor-sorts',
         },
     ],
     searches: [
@@ -73,6 +73,14 @@ export const cardsInfo: cardInfoProps = {
         {
             title: 'Binary Search',
             href: 'searches/binary-search',
+        },
+        {
+            title: 'Jump Search',
+            href: 'searches/jump-search',
+        },
+        {
+            title: 'Exponential Search',
+            href: 'searches/exponential-search',
         },
         {
             title: 'Depth-First Search',
@@ -89,6 +97,14 @@ export const cardsInfo: cardInfoProps = {
         {
             title: "Dijkstra's Algorithm",
             href: 'searches/dijkstra',
+        },
+        {
+            title: "Depth-Limited Search",
+            href: 'searches/depth-limited-search',
+        },
+        {
+            title: "Iterative Deepening search",
+            href: 'searches/iterative-deepening-search',
         }
     ]
 };
@@ -97,11 +113,11 @@ export const homeCardsInfo = [
     {
         title: 'Sorts',
         href: 'sorts',
-        image: sorts
+        image: sortsImg
     },
     {
         title: 'Searches',
         href: 'searches',
-        image: searches
+        image: searchesImg
     },
 ];

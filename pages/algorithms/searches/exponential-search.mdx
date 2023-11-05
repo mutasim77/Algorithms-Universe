@@ -1,0 +1,82 @@
+# Exponential Search 🦋
+Exponential Search, also known as "exponential binary search," is a searching algorithm 
+specifically designed for sorted arrays. It begins with a linear search to quickly reduce 
+the search space, followed by a binary search for precise localization of the target element. 
+This approach makes it highly efficient, particularly when the target element is located towards 
+the end of the array.
+
+## How Does Exponential Search Work? 🤓
+Exponential Search operates with the following steps:
+1. Determine a range (usually a power of 2) such that the target element is likely to be within that range. For example, start with a range of 1 and double it until the upper bound of the range is greater than or equal to the target element.
+2. Perform a binary search within the determined range to locate the target element. If found, return its index; otherwise, return -1 to indicate that the element is not in the array.
+
+## Complexity Analysis 📊
+### Time Complexity: 
+Exponential Search has a time complexity of ```O(log*n)```, where _"n"_ is the size of the array. 
+This makes it efficient, especially when the target element is located towards the end of 
+the array. The binary search within the determined range ensures a quick and precise location of the target.
+
+### Space Complexity: 
+The space complexity of Exponential Search is ```O(1)```, as it requires a 
+constant amount of additional memory for variables, regardless of the array size.
+
+### Optimality: 
+Exponential Search is optimal for sorted arrays. It ensures that the 
+least number of comparisons are made, making it particularly efficient 
+in scenarios where the target element is far from the beginning of the array.
+
+## Applications of Exponential Search ⚪️
+Exponential Search can be applied in various domains:
+- Database Systems: In databases, it is used to locate records efficiently.
+- Web Search Engines: Exponential Search can help in quickly finding indexed web pages that match a user's query.
+- Software Development: It can be applied when searching for elements in sorted lists or arrays in software applications.
+- File Systems: In file systems, it's useful for locating files or directories within sorted directories.
+
+```js filename="exponentialSearch.js" copy
+function exponentialSearch(arr, target) {
+    const n = arr.length;
+
+    if (arr[0] === target) {
+        return 0;
+    }
+
+    let i = 1;
+    while (i < n && arr[i] <= target) {
+        i *= 2;
+    }
+
+    return binarySearch(arr, target, i / 2, Math.min(i, n - 1));
+}
+
+function binarySearch(arr, target, left, right) {
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (arr[mid] === target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+const sortedArray = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+const targetElement = 13;
+const result = exponentialSearch(sortedArray, targetElement);
+
+if (result !== -1) {
+    console.log(`Element ${targetElement} found at index ${result}`);
+} else {
+    console.log(`Element ${targetElement} not found in the array.`);
+}
+```
+
+## Conclusion 🌟
+Exponential Search is a powerful algorithm when you need to find elements 
+in sorted arrays, especially when the target element is located towards the 
+end of the array. Its efficient combination of linear and binary searches makes 
+it a valuable tool in various domains, offering an attractive solution for optimizing 
+search efficiency. Understanding Exponential Search equips you with a practical and 
+efficient search strategy for a wide range of applications.
