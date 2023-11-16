@@ -8,13 +8,14 @@ const HomeCards = () => {
     return (
         <Cards>
             {homeCardsInfo.map((item) => (
-                <ShowcaseCard title={item.title} href={`/algorithms/${item.href}`}>
+                <ShowcaseCard key={item.title} title={item.title} href={`/algorithms/${item.href}`}>
                     <Image
                         className={styles.img}
                         src={item.image.src}
                         alt={`${item.title} preview`}
                         width={453}
                         height={294}
+                        priority={false}
                     />
                 </ShowcaseCard>
             ))}

@@ -1,0 +1,140 @@
+# Knuth-Morris-Pratt (KMP) Algorithm 💡
+
+The KMP Algorithm is a sophisticated string matching algorithm that minimizes 
+unnecessary character comparisons by utilizing information from previous comparisons. 
+It achieves this through the clever use of a _"failure function"_ or _"prefix function,"_ 
+which denotes the length of the longest proper prefix that is also a proper suffix of a string.
+
+## How Does KMP Algorithm Work? 👀
+
+KMP Algorithm operates with the following steps:
+
+1. Preprocessing (Building the Failure Function(also called _"prefix function"_ or _"LPS array"_)): 
+    - Analyze the pattern to create a _"failure function"_ table, which stores information about the lengths of proper prefixes that are also proper suffixes.
+
+2. Searching:
+    - Move through the text and pattern simultaneously.
+    - If a mismatch occurs at position j in the pattern, use the failure function to determine the next position to compare in the pattern.
+
+Here's a simplified pseudocode representation of the KMP Algorithm:
+
+```js 
+function KMPSearch(text, pattern):
+    n = length of text
+    m = length of pattern
+
+    // Build the failure function
+    failureFunction = buildFailureFunction(pattern)
+
+    // Searching
+    i = 0
+    j = 0
+    while i < n:
+        if pattern[j] equals text[i]:
+            if j equals m - 1:
+                // Pattern found starting at index i - j in the text
+                return i - j
+            i++
+            j++
+        else if j > 0:
+            j = failureFunction[j - 1]
+        else:
+            i++
+
+    // Pattern not found in the text
+    return -1
+```
+
+## Complexity Analysis for KMP Algorithm 📊
+
+### Time Complexity: 
+The time complexity of the KMP Algorithm is `O(n + m)`, where "n" 
+is the length of the text and "m" is the length of the pattern. The preprocessing step takes 
+`O(m)` time, and the searching step takes `O(n)` time.
+
+
+### Space Complexity: 
+The space complexity is `O(m)`, where "m" is the length of the pattern. 
+This space is required to store the failure function table.
+
+### Optimality: 
+KMP Algorithm is optimal for string matching, providing a 
+linear time complexity by efficiently avoiding unnecessary character comparisons.
+
+## Applications of KMP Algorithm 🪐
+
+- Text Editors: Used for searching patterns in text documents.
+- Bioinformatics: Applied in DNA sequence matching.
+- Compilers: Utilized for pattern matching in lexical analysis.
+- Data Mining: Employed for efficient substring matching in large datasets.
+
+## JS Implementation
+
+```js filename="KMPSearch.js" copy
+function computeLPS(pattern, m, lps) {
+    let maxPrefix = 0;
+
+    for (let i = 1; i < m; i++) {
+        
+        while (maxPrefix > 0 && pattern[i] !== pattern[maxPrefix]) {
+            maxPrefix = lps[maxPrefix - 1];
+        }
+
+        if (pattern[i] === pattern[maxPrefix]) {
+            maxPrefix++;
+        }
+
+        lps[i] = maxPrefix;
+    }
+}
+
+function KMPSearch(text, pattern) {
+    const n = text.length;
+    const m = pattern.length;
+    const LPS = Array(m).fill(0);
+    
+    computeLPS(pattern, m, LPS);
+    
+    let i = 0;
+    let j = 0;
+
+    while (i < n) {
+        if (pattern[j] === text[i]) {
+            if (j === m - 1) {
+                return i - j; // Pattern found starting at index i - j in the text
+            }
+            i++;
+            j++;
+        } else if (j > 0) {
+            j = LPS[j - 1];
+        } else {
+            i++;
+        }
+    }
+
+    return -1; // Pattern not found in the text
+}
+
+// Example usage
+const text = "ABABDABACDABABCABAB";
+const pattern = "ABABCABAB";
+
+const result = KMPSearch(text, pattern);
+
+if (result !== -1) {
+    console.log(`Pattern found at index ${result} in the text.`);
+} else {
+    console.log("Pattern not found in the text.");
+}
+
+// Result: Pattern found at index 10 in the text.
+```
+
+## Conclusion 👾
+The Knuth-Morris-Pratt (KMP) Algorithm is a remarkable string matching 
+algorithm that efficiently locates patterns within texts. Its use of a failure 
+function allows for a substantial reduction in unnecessary character comparisons, 
+resulting in optimal time complexity. Understanding the KMP Algorithm equips you 
+with a powerful tool for efficient string matching, applicable across various domains 
+where pattern recognition is essential. Explore, implement, and harness the capabilities 
+of KMP for enhanced string searching efficiency! 🚀

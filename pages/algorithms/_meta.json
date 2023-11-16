@@ -6,6 +6,7 @@
     },
     "sorts": "",
     "searches": "",
+    "string-matching": "",
     "-- More": {
         "type": "separator",
         "title": "More"

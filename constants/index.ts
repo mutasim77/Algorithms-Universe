@@ -1,9 +1,10 @@
 import { cardsProps } from "../types";
-import { sortsImg, searchesImg } from "../public/assets";
+import { sortsImg, searchesImg, stringMatching } from "../public/assets";
 
 interface cardInfoProps {
     sorts: cardsProps[],
     searches: cardsProps[],
+    stringMatching: cardsProps[],
 }
 
 export const cardsInfo: cardInfoProps = {
@@ -106,6 +107,16 @@ export const cardsInfo: cardInfoProps = {
             title: "Iterative Deepening search",
             href: 'searches/iterative-deepening-search',
         }
+    ],
+    stringMatching: [
+        {
+            title: 'Brute-Force String Matching',
+            href: 'string-matching/brute-force',
+        },
+        {
+            title: 'Knuth-Morris-Pratt (KMP) Algorithm',
+            href: 'string-matching/kmp',
+        },
     ]
 };
 
@@ -119,5 +130,10 @@ export const homeCardsInfo = [
         title: 'Searches',
         href: 'searches',
         image: searchesImg
+    },
+    {
+        title: 'String Matching Algorithms',
+        href: 'string-matching',
+        image: stringMatching
     },
 ];

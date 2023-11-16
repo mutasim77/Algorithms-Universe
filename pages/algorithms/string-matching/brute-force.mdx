@@ -1,0 +1,99 @@
+# Brute-Force String Matching 🪧
+
+Brute-Force String Matching, also known as the Naive String Matching algorithm, 
+is a simple and direct method for finding occurrences of a pattern within a text. 
+It compares the pattern with all possible substrings of the text, moving one character 
+at a time, until a match is found or the end of the text is reached.
+
+## How Does It Work?
+
+Brute-Force String Matching operates with the following steps:
+
+1. Start with the first character of the text and the first character of the pattern.
+2. Compare each character of the pattern with the corresponding character in the current substring of the text.
+3. If a mismatch is found, move one position ahead in the text and start comparing again.
+4. Repeat this process until a match is found or the end of the text is reached.
+
+
+Here's a simplified pseudocode representation of Brute-Force String Matching:
+
+```js filename="pseudocode"
+function BruteForceStringMatch(text, pattern):
+    n = length of text
+    m = length of pattern
+
+    for i from 0 to n - m:
+        j = 0
+        while j < m and text[i + j] equals pattern[j]:
+            j++
+        
+        if j equals m:
+            // Pattern found starting at index i in the text
+            return i
+
+    // Pattern not found in the text
+    return -1
+```
+
+## Complexity Analysis 📊
+
+### Time Complexity: 
+The worst-case time complexity of Brute-Force String Matching is ```O((n - m + 1) * m)``` (it's basically `O(m*n)`), 
+where _"n"_ is the length of the text and _"m"_ is the length of the pattern. In the worst case, 
+the algorithm may need to compare the entire pattern with every possible substring of the text.
+
+### Space Complexity: 
+The space complexity is ```O(1)```, as the algorithm uses only a constant amount of additional 
+memory regardless of the size of the input.
+
+### Optimality: 
+Brute-Force String Matching is not the most efficient algorithm, especially for large texts. 
+However, it is simple to implement and can be a practical choice for short patterns or 
+situations where more advanced algorithms are not necessary.
+
+## Implementation
+
+```js filename="bruteForceStringMatch.js" copy
+function bruteForceStringMatch(text, pattern) {
+    const n = text.length;
+    const m = pattern.length;
+
+    for (let i = 0; i <= n - m; i++) {
+        let j = 0;
+        while (j < m && text[i + j] === pattern[j]) {
+            j++;
+        }
+
+        if (j === m) {
+            // Pattern found starting at index i in the text
+            return i;
+        }
+    }
+
+    // Pattern not found in the text
+    return -1;
+}
+
+const text = "ABABCABAB";
+const pattern = "ABAB";
+
+const result = bruteForceStringMatch(text, pattern);
+
+if (result !== -1) {
+    console.log(`Pattern found at index ${result} in the text.`);
+} else {
+    console.log("Pattern not found in the text.");
+}
+
+// Result: Pattern found at index 0 in the text
+```
+
+> This JavaScript code demonstrates the implementation of Brute-Force String Matching for a given text and pattern.
+
+## Conclusion 💫
+Brute-Force String Matching is a simple yet effective algorithm for finding patterns in text. 
+While it may not be the most efficient for large datasets, its straightforward approach makes 
+it easy to understand and implement. It serves as a foundational concept for more advanced string 
+matching algorithms and is a valuable tool when simplicity and ease of implementation are prioritized. 
+Understanding Brute-Force String Matching provides a solid basis for exploring more optimized string 
+searching techniques.
